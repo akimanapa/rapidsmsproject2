@@ -11,7 +11,7 @@ class App(AppBase):
 				h.save()
 			message.respond("WELCOME TO RAPIDSMS")
 			return True
-		else:
+		elif History.objects.filter(tel_num=tel):
 			for q in (History.objects.filter(tel_num=tel)):
 				if(q.status==1):
 					q.reponse=message.text
@@ -24,5 +24,8 @@ class App(AppBase):
 					message.respond(" %s " %(quest))
 					return True
 			message.respond("CONGRATULATION! YOU ARE REGISTERED IN OUR SYSTEM !")
+			return True
+		else:
+			message.respond("TO REGISTER YOURSELF SEND JO !")
 			return True
 			
