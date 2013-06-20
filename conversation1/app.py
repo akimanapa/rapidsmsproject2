@@ -26,6 +26,6 @@ class App(AppBase):
 			message.respond("CONGRATULATION! YOU ARE REGISTERED IN OUR SYSTEM !")
 			return True
 		else:
-			message.respond("TO REGISTER YOURSELF SEND JO !")
+			message.respond("SORY YOU ARE NOT REGISTERED! TO REGISTER YOURSELF SEND JO !")
 			return True
 			
