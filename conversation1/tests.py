@@ -5,12 +5,13 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 
-from django.test import TestCase
+from rapidsms.tests.harness import RapidTest
 
+class SendSMSTest(RapidTest):
+	
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+    def test_Accueil(self):
+        """Outbox should contain message explaining WELCOME TO RAPIDSMS"""
+        self.receive('JO', self.lookup_connections('1')[0])
+        self.assertEqual(self.outbound[0].text, 'WELCOME TO RAPIDSMS')
+		
