@@ -10,8 +10,8 @@ from rapidsms.tests.harness import RapidTest
 class SendSMSTest(RapidTest):
 	
 
-    def test_Accueil(self):
-        """Outbox should contain message explaining WELCOME TO RAPIDSMS"""
+    def test_when_first_msg_is_JO(self):
+        #"""Outbox should contain message explaining WELCOME TO RAPIDSMS"""
         self.receive('JO', self.lookup_connections('1')[0])
         self.assertEqual(self.outbound[0].text, 'WELCOME TO RAPIDSMS')
 		
