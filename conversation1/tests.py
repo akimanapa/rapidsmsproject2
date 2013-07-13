@@ -17,9 +17,8 @@ class SendSMSTest(RapidTest):
         self.assertEqual(self.outbound[0].text, 'WELCOME TO RAPIDSMS')
 	def test_when_JO_is_send_as_an_answer(self):
 		"""Outbox should contain the next question """
-		h=History(question="q1",tel_num=tel,status=1)
-		h.save()
-		h1=History(question="q2",tel_num=tel,status=0)
-		h1.save()			
+		History.objects.create(question="q1",tel_num=tel,status=1)
+		History.objects.create(question="q2",tel_num=tel,status=0)
 		self.receive('JO', self.lookup_connections('1')[0])
-		self.assertEqual(self.outbound[0].text, h1.question)
+		
+		self.assertEqual(self.outbound[0].text,"q2")
