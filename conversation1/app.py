@@ -24,7 +24,10 @@ class App(AppBase):
 			for q in Questions.objects.all():
 				h=History(question=q.question,tel_num=tel,status=0)
 				h.save()
-			message.respond("WELCOME TO RAPIDSMS")
+			if History.objects.filter(tel_num=tel):
+				message.respond("WELCOME TO RAPIDSMS!")
+			else:
+				message.respond("SORY, TRY AGAIN LATER!")
 			return True
 		else:
 			message.respond("SORY YOU ARE NOT REGISTERED! TO REGISTER YOURSELF SEND JO !")

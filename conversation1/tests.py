@@ -15,10 +15,12 @@ class SendSMSTest(RapidTest):
         """Outbox should contain message 'WELCOME TO RAPIDSMS' """
         self.receive('JO', self.lookup_connections('1')[0])
         self.assertEqual(self.outbound[0].text, 'WELCOME TO RAPIDSMS')
+        
+        
 	def test_when_JO_is_send_as_an_answer(self):
 		"""Outbox should contain the next question """
-		History.objects.create(question="q1",tel_num=tel,status=1)
-		History.objects.create(question="q2",tel_num=tel,status=0)
-		self.receive('JO', self.lookup_connections('1')[0])
+		History.objects.create(question="q1",tel_num=2,status=1)
+		History.objects.create(question="q2",tel_num=2,status=0)
+		self.receive('JO', self.lookup_connections('2')[0])
 		
-		self.assertEqual(self.outbound[0].text,"q2")
+		self.assertEqual(self.outbound[0].text,u' q2 ')
